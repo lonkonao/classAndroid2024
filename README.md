@@ -1,4 +1,6 @@
-# Bienvenido a la asignatura de Android## Contenidos a ver en este ramo
+# Bienvenido a la asignatura de Android
+
+## Contenidos a ver en este ramo
 
 ### Unidad I: Fundamentos y Desarrollo de Apps Simples
 
