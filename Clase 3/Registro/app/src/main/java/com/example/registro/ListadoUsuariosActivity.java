@@ -59,4 +59,6 @@ public class ListadoUsuariosActivity extends AppCompatActivity {
         // Finaliza la actividad actual y vuelve a la anterior
         finish();
     }
+
+
 }

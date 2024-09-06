@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Registro"
         tools:targetApi="31">
+        <activity android:name=".ListadoUsuariosActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
