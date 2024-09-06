@@ -1,5 +1,4 @@
 package com.example.registro;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,15 +11,10 @@ import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -49,18 +43,27 @@ public class MainActivity extends AppCompatActivity {
         cbLectura = findViewById(R.id.cb_lectura);
         swEstado = findViewById(R.id.sw_estado);
         btnGuardar = findViewById(R.id.btn_guardar);
+        btnVerListado = findViewById(R.id.btn_ver_listado);
 
-
+        // Configurar el botón Guardar
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 guardarUsuario();
             }
         });
+
+        // Configurar el botón Ver Listado
+        btnVerListado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                abrirListado();
+            }
+        });
     }
 
     private void guardarUsuario() {
-
+        // Obtener los datos del formulario
         String nombre = etNombre.getText().toString();
         String apellidos = etApellidos.getText().toString();
         String fechaNacimiento = dpFechaNacimiento.getDayOfMonth() + "/" +
@@ -74,7 +77,38 @@ public class MainActivity extends AppCompatActivity {
         if (cbLectura.isChecked()) intereses.add("Lectura");
         boolean estado = swEstado.isChecked();
 
+        // Validar que todos los campos requeridos estén llenos
+        if (nombre.isEmpty() || apellidos.isEmpty() || sexo.isEmpty()) {
+            Toast.makeText(MainActivity.this, "Por favor, complete todos los campos requeridos", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Crear un objeto Usuario y añadirlo a la lista
+        Usuario usuario = new Usuario(nombre, apellidos, fechaNacimiento, sexo, intereses, estado);
+        listaUsuarios.add(usuario);
+
+        // Mostrar un mensaje de éxito
+        Toast.makeText(MainActivity.this, "Usuario guardado exitosamente", Toast.LENGTH_SHORT).show();
+
+        // Limpiar los campos del formulario
+        limpiarFormulario();
     }
 
-}
+    private void limpiarFormulario() {
+        etNombre.setText("");
+        etApellidos.setText("");
+        rgSexo.clearCheck();
+        cbDeportes.setChecked(false);
+        cbMusica.setChecked(false);
+        cbLectura.setChecked(false);
+        swEstado.setChecked(false);
+    }
 
+    private void abrirListado() {
+        // Crear un Intent para abrir la actividad del listado
+        Intent intent = new Intent(MainActivity.this, ListadoUsuariosActivity.class);
+        // Pasar la lista de usuarios a la nueva actividad
+        intent.putExtra("listaUsuarios", (ArrayList<Usuario>) listaUsuarios);
+        startActivity(intent);
+    }
+}

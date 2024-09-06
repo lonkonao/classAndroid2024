@@ -84,11 +84,12 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:orientation="horizontal"
-           android:gravity="center">
+           android:gravity="center_vertical">
+
            <TextView
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:text="Activo"/>
+               android:text="Inactivo" />
 
            <Switch
                android:id="@+id/sw_estado"
@@ -98,7 +99,8 @@
            <TextView
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:text="Inactivo"/>
+               android:text="Activo" />
+
        </LinearLayout>
 
        <Button
@@ -106,6 +108,12 @@
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:text="Guardar"/>
+
+       <Button
+           android:id="@+id/btn_ver_listado"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="Ver Listado" />
 
 
    </LinearLayout>
