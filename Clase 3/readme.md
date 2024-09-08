@@ -75,6 +75,64 @@ private void guardarUsuario() {
 }
 ```
 
-## Próximos Pasos
+````
 
-En la próxima clase revisaremos cómo mostrar los usuarios registrados en un listado utilizando `TableLayout` y cómo gestionar la navegación entre actividades en Android.
+### 3. Creación de la Nueva Activity: ListadoUsuariosActivity
+En esta actividad se muestran los usuarios registrados en un listado utilizando `TableLayout`. La actividad recibe la lista de usuarios desde la actividad principal y la muestra en forma de tabla.
+
+```java
+public class ListadoUsuariosActivity extends AppCompatActivity {
+
+    private TableLayout tableLayoutUsuarios;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.listado);
+
+        tableLayoutUsuarios = findViewById(R.id.tableLayoutUsuarios);
+
+        ArrayList<Usuario> listaUsuarios = (ArrayList<Usuario>) getIntent().getSerializableExtra("listaUsuarios");
+
+        if (listaUsuarios != null && !listaUsuarios.isEmpty()) {
+            for (Usuario usuario : listaUsuarios) {
+                agregarFilaATabla(usuario);
+            }
+        }
+    }
+
+    private void agregarFilaATabla(Usuario usuario) {
+        TableRow tableRow = new TableRow(this);
+
+        TextView tvNombre = new TextView(this);
+        tvNombre.setText(usuario.getNombre());
+        tableRow.addView(tvNombre);
+
+        TextView tvSexo = new TextView(this);
+        tvSexo.setText(usuario.getSexo());
+        tableRow.addView(tvSexo);
+
+        TextView tvFechaNacimiento = new TextView(this);
+        tvFechaNacimiento.setText(usuario.getFechaNacimiento());
+        tableRow.addView(tvFechaNacimiento);
+
+        TextView tvEstado = new TextView(this);
+        tvEstado.setText(usuario.isEstado() ? "Activo" : "Inactivo");
+        tableRow.addView(tvEstado);
+
+        tableLayoutUsuarios.addView(tableRow);
+    }
+
+    public void volver(View view) {
+        finish();
+    }
+}
+````
+
+### 4. Configuración del Manifest
+
+No olvides agregar la nueva actividad al archivo `AndroidManifest.xml`:
+
+```xml
+<activity android:name=".ListadoUsuariosActivity"></activity>
+```
