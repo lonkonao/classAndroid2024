@@ -75,9 +75,8 @@ private void guardarUsuario() {
 }
 ```
 
-````
-
 ### 3. Creación de la Nueva Activity: ListadoUsuariosActivity
+
 En esta actividad se muestran los usuarios registrados en un listado utilizando `TableLayout`. La actividad recibe la lista de usuarios desde la actividad principal y la muestra en forma de tabla.
 
 ```java
@@ -127,7 +126,7 @@ public class ListadoUsuariosActivity extends AppCompatActivity {
         finish();
     }
 }
-````
+```
 
 ### 4. Configuración del Manifest
 
