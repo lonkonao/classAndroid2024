@@ -51,7 +51,7 @@ En esta tarea, vamos a continuar desarrollando la **Calculadora Básica** que vi
 3. **Nuevo diseño:**
 
    - Debes modificar el diseño de la calculadora para que no sea igual al actual.
-   - (AQUÍ INSERTARÉ IMAGEN DEL DISEÑO ACTUAL).
+   - <img width="371" alt="Captura de pantalla 2024-08-24 a la(s) 5 53 28 p  m" src="https://github.com/user-attachments/assets/5f9ef3b5-dfb8-4dbf-a241-9d7f7d470bdf">.
    - Puedes cambiar tanto el diseño como la lógica interna de la calculadora, pero si decides cambiar la lógica, asegúrate de mantener las funcionalidades vistas en clases anteriores.
 
 4. **Historial de resultados:**
