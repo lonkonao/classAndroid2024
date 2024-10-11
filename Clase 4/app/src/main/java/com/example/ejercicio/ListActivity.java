@@ -1,6 +1,5 @@
 package com.example.ejercicio;
 
-
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -29,6 +28,5 @@ public class ListActivity extends AppCompatActivity {
 
         btnVolver.setOnClickListener(v -> finish());
 
-
-   };
+    };
 }
