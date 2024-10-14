@@ -79,4 +79,6 @@ Desarrollamos una aplicación básica de Android que permite a los usuarios regi
 ## Recursos
    - Firebase Authentication: [Documentación Oficial](https://firebase.google.com/docs/auth)
    - Android Studio: [Guía Rápida](https://developer.android.com/studio/intro)
+   - Clase 6 [Clase 6.pdf](https://github.com/user-attachments/files/17364290/Clase.6.pdf)
+
 
