@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/et_buscar_nombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre a buscar"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/btn_buscar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Buscar" />
+
+        <TextView
+            android:id="@+id/tv_resultado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp" />
+
+        <EditText
+            android:id="@+id/et_nuevo_nombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nuevo nombre"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/et_nueva_edad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nueva edad"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/btn_actualizar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Actualizar" />
+
+        <Button
+            android:id="@+id/btn_eliminar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Eliminar" />
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
