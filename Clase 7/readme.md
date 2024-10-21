@@ -64,6 +64,75 @@ Este proyecto implementa una aplicación móvil en Android que permite gestionar
 
 <img width="776" alt="image" src="https://github.com/user-attachments/assets/93087be6-cdab-4aa0-b687-2b7c1e074f89">
 
+# Proxima Evaluación
+
+## Deseables
+
+Objetivo implementar una aplicación móvil Android que incluya las siguientes funcionalidades:
+
+1. **Inicio de sesión (Registro e Inicio de Sesión):**
+
+   - Los usuarios deben poder registrarse y luego iniciar sesión utilizando su correo y contraseña.
+   - Validaciones de campos obligatorios para registro e inicio de sesión.
+
+2. **Perfil de Usuario:**
+
+   - Una vez el usuario haya iniciado sesión, debe ver un perfil con sus datos (nombre, correo, etc.).
+   - Si el usuario es administrador, debe tener acceso a un listado de todos los usuarios registrados en la aplicación.
+
+3. **Roles del Equipo:**
+   Cada equipo debe tener un encargado de:
+   - **Front-end**: Implementación de la interfaz de usuario y conexión con el back-end.
+   - **Back-end**: Gestión de la lógica de negocio, la base de datos, y control de accesos.
+   - **Documentación**: Redacción del manual de usuario y la documentación técnica.
+   - **Pruebas de Funcionamiento**: Realización de pruebas de funcionalidad y reporte de errores.
+   - **Líder**: Coordinación del equipo y asegurarse de que todo el equipo cumpla con los plazos y estándares de calidad.
+
+## Requisitos Técnicos
+
+- **Lenguaje**: Java
+- **Plataforma**: Android Studio
+- **Base de datos**: Firebase Realtime Database
+
+## Rúbrica de Evaluación
+
+### 1. Desarrollador Front-end (25 puntos)
+
+| **Criterio**                                     | **No logrado** (0-3 pts)         | **Medianamente logrado** (4-7 pts) | **Logrado** (8-10 pts)                | **Puntos** |
+| ------------------------------------------------ | -------------------------------- | ---------------------------------- | ------------------------------------- | ---------- |
+| **Diseño de interfaz de usuario**                | Interfaz confusa o inconsistente | Funcional pero con inconsistencias | Interfaz intuitiva y consistente      | /10        |
+| **Funcionalidad de registro e inicio de sesión** | Errores críticos en formularios  | Funciona con algunos errores       | Formularios funcionando correctamente | /10        |
+| **Integración con back-end**                     | Sin comunicación con servidor    | Comunicación parcial con problemas | Comunicación efectiva con el servidor | /5         |
+
+### 2. Desarrollador Back-end (25 puntos)
+
+| **Criterio**                            | **No logrado** (0-3 pts)             | **Medianamente logrado** (4-7 pts)   | **Logrado** (8-10 pts)            | **Puntos** |
+| --------------------------------------- | ------------------------------------ | ------------------------------------ | --------------------------------- | ---------- |
+| **Implementación de lógica de negocio** | Lógica incorrecta o inexistente      | Implementada con errores             | Correcta y eficiente              | /10        |
+| **Gestión de base de datos**            | Almacenamiento incorrecto o inseguro | Funcional pero con problemas menores | Almacenamiento seguro y eficiente | /10        |
+| **Control de accesos y roles**          | Sin control de accesos               | Control de accesos básico            | Roles diferenciados correctamente | /5         |
+
+### 3. Documentación (25 puntos)
+
+| **Criterio**                 | **No logrado** (0-3 pts)                | **Medianamente logrado** (4-7 pts)            | **Logrado** (8-10 pts)    | **Puntos** |
+| ---------------------------- | --------------------------------------- | --------------------------------------------- | ------------------------- | ---------- |
+| **Manual de usuario**        | Inexistente o incomprensible            | Cubre funciones básicas con falta de claridad | Claro y detallado         | /10        |
+| **Documentación técnica**    | Inexistente o insuficiente              | Parcial con falta de detalles                 | Completa y detallada      | /10        |
+| **Comentarios en el código** | Sin comentarios o prácticas deficientes | Comentarios limitados                         | Bien documentado y limpio | /5         |
+
+### 4. Pruebas de Funcionamiento (25 puntos)
+
+| **Criterio**                   | **No logrado** (0-3 pts)             | **Medianamente logrado** (4-7 pts)       | **Logrado** (8-10 pts)                | **Puntos** |
+| ------------------------------ | ------------------------------------ | ---------------------------------------- | ------------------------------------- | ---------- |
+| **Plan de pruebas**            | Inexistente o inapropiado            | Cubre algunos casos pero es incompleto   | Casos de prueba completos             | /10        |
+| **Ejecución de pruebas**       | Sin pruebas o sin reporte de errores | Bugs identificados pero mal documentados | Identificación detallada de bugs      | /10        |
+| **Validación de correcciones** | Sin verificación                     | Verificación parcial                     | Verificación completa de correcciones | /5         |
+
+### Evaluación del Líder (100 puntos)
+
+- El puntaje del líder será la **suma de los puntajes obtenidos** por cada uno de los roles en su equipo.
+
+
 
 
 
