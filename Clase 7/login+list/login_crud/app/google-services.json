@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "896475341487",
+    "project_id": "logincrud-dc728",
+    "storage_bucket": "logincrud-dc728.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:896475341487:android:d79182f5c28b3fbbb32a5a",
+        "android_client_info": {
+          "package_name": "com.example.login_crud"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7h8gANQXQDr6yUXoRICBtSlQXWAxTqj8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
