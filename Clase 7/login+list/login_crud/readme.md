@@ -1,4 +1,3 @@
-
 # Proyecto Android con Login y Listado de Usuarios usando Firebase
 
 Este proyecto es una aplicación básica de Android que permite a los usuarios registrarse y autenticarse utilizando Firebase Authentication. Los datos adicionales del usuario (nombre, edad, y correo) se almacenan en Firebase Realtime Database, y se listan en una vista con un `RecyclerView`.
@@ -96,14 +95,3 @@ buttonVerUsuarios.setOnClickListener(v -> {
     startActivity(intent);
 });
 ```
-
-### 8. Probar la Aplicación
-
-1. Registra un usuario desde la app.
-2. Verifica que los datos se guarden en Firebase Realtime Database.
-3. Navega a la vista de usuarios y asegúrate de que se muestran correctamente en la lista.
-
-## Notas
-
-- Recuerda actualizar las reglas de seguridad de Firebase antes de lanzar la aplicación a producción.
-- Esta guía es para propósitos de desarrollo. No olvides aplicar las mejores prácticas de seguridad antes de publicar tu app.
