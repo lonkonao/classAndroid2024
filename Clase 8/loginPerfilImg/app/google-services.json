@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1030729774309",
+    "project_id": "loginperfilimg",
+    "storage_bucket": "loginperfilimg.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1030729774309:android:f989dcbcc3c39bb40e500c",
+        "android_client_info": {
+          "package_name": "com.example.loginperfilimg"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgfeveBQYjthGmRU8S6QacpH4LHDOxaUg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
