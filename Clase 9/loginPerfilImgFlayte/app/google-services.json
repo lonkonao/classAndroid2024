@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "732444971670",
+    "firebase_url": "https://proyectoa-b8822-default-rtdb.firebaseio.com",
+    "project_id": "proyectoa-b8822",
+    "storage_bucket": "proyectoa-b8822.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:732444971670:android:a4aee43a9e7e93b0b8e8b7",
+        "android_client_info": {
+          "package_name": "com.example.loginperfilimg"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBx5xk9bjSVQXk8pg1NHtJrEWkHQBZnhu8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

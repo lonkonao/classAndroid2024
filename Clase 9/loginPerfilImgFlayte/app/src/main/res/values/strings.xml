@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">loginPerfilImg</string>
+    <string name="profile_image_desc">Imagen de perfil</string>
+    <string name="company_image_description" />
+
+</resources>
