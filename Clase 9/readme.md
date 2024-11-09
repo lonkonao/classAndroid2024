@@ -1,4 +1,4 @@
-# README - Proyectos Firebase Múltiples y TestSwipe en Android
+# Proyectos Firebase Múltiples y TestSwipe en Android
 
 Este documento describe dos proyectos en Android:
 1. **Proyecto Múltiples Proyectos Firebase**: Configura una aplicación Android para conectarse a dos proyectos diferentes en Firebase. Uno de los proyectos maneja la autenticación y la base de datos, mientras que el otro es exclusivamente para almacenamiento en Firebase Storage.
