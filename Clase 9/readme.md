@@ -1,202 +1,221 @@
+# README - Proyectos Firebase Múltiples y TestSwipe en Android
 
-# Proyecto Android Java para Gestión de Empleos con Firebase
+Este documento describe dos proyectos en Android:
+1. **Proyecto Múltiples Proyectos Firebase**: Configura una aplicación Android para conectarse a dos proyectos diferentes en Firebase. Uno de los proyectos maneja la autenticación y la base de datos, mientras que el otro es exclusivamente para almacenamiento en Firebase Storage.
+2. **Proyecto TestSwipe**: Implementa una funcionalidad de "deslizar para aceptar/rechazar colores". Este proyecto utiliza gestos de swipe para permitir que los usuarios acepten o rechacen colores con animaciones y muestra el resultado final.
 
-## Objetivo del Proyecto
+A continuación, se detalla cómo configurar y trabajar en ambos proyectos.
 
-Este proyecto tiene como objetivo guiar a los estudiantes en la creación de una aplicación Android que permita a las **Empresas** publicar empleos y a los **Trabajadores** buscar oportunidades laborales. Implementaremos autenticación, almacenamiento de perfiles con imágenes, y registro en tiempo real de los empleos publicados.
+## Proyecto Múltiples Proyectos Firebase en Android
 
-## Tecnologías Utilizadas
+Este proyecto muestra cómo configurar una aplicación Android para conectarse a dos proyectos diferentes en Firebase: uno para manejar autenticación y base de datos, y otro para almacenamiento.
 
-1. **Firebase Realtime Database**: Para guardar en tiempo real la información de usuarios y empleos.
-2. **Firebase Authentication**: Para gestionar el acceso seguro de los usuarios.
-3. **Firebase Storage**: Usado para almacenar imágenes de perfil.
-4. **Material Design**: Para crear una interfaz moderna y fácil de usar.
-5. **Java en Android Studio**: Herramienta principal para el desarrollo del proyecto.
+### Requisitos Previos
 
-## Configuración de Firebase
+1. **Android Studio** instalado.
+2. **Cuenta de Firebase** con dos proyectos configurados:
+   - **Proyecto Principal** (proyectoA) para autenticación y base de datos.
+   - **Proyecto de Almacenamiento** (proyectoStorage) para Firebase Storage.
 
-1. **Firebase Realtime Database**:
-   - **Habilitación**: En Firebase Console, selecciona el proyecto y activa **Realtime Database** en modo "Testing".
-   - **Estructura esperada**: La base de datos tendrá las rutas `users` y `jobs`.
+### Pasos de Configuración
 
-2. **Firebase Storage**:
-   - **Habilitación**: Activa **Firebase Storage** desde Firebase Console.
-   - **Configuración de Seguridad**: Cambia las reglas de seguridad a modo de prueba si es necesario para desarrollo.
-   - **Ubicación de las imágenes**: Las imágenes de perfil se guardarán en la carpeta `profile_images/` y estarán referenciadas por el `userId` único de cada usuario.
+#### 1. Crear y Configurar los Proyectos en Firebase Console
 
-**Código de Configuración de Firebase Storage**:
+1. Crea ambos proyectos en [Firebase Console](https://console.firebase.google.com/).
+2. Añade tu aplicación Android a cada proyecto y descarga el archivo `google-services.json` correspondiente para obtener los datos de configuración.
+3. **Importante**: no reemplaces `google-services.json` en tu proyecto. Utilizaremos los datos manualmente para inicializar el segundo proyecto.
 
-Para almacenar la imagen de perfil del usuario al momento de registro:
+#### 2. Configurar el Proyecto Principal (proyectoA)
 
-```java
-FirebaseStorage storage = FirebaseStorage.getInstance();
-StorageReference storageRef = storage.getReference();
-StorageReference profileImagesRef = storageRef.child("profile_images/" + userId + ".jpg");
+1. Coloca el archivo `google-services.json` de **proyectoA** en la carpeta `app/` de tu proyecto Android.
+2. En el archivo `build.gradle` a nivel de módulo (`app`), añade la siguiente línea para habilitar los servicios de Google:
 
-profileImagesRef.putFile(imageUri)
-    .addOnSuccessListener(taskSnapshot -> {
-        profileImagesRef.getDownloadUrl().addOnSuccessListener(uri -> {
-            // Guarda la URL de descarga en la base de datos para referenciar la imagen
-            user.setImageUrl(uri.toString());
-            mDatabase.child("users").child(userId).setValue(user);
-        });
-    })
-    .addOnFailureListener(e -> {
-        // Manejo de error
-    });
-```
+   ```groovy
+   apply plugin: 'com.google.gms.google-services'
 
----
+3. En build.gradle a nivel de proyecto, asegúrate de incluir la dependencia de Google Services:
+    ```groovy
+    classpath 'com.google.gms:google-services:4.3.10'
+    ```
+Esto configura el proyecto proyectoA como el principal para autenticación y base de datos en tu aplicación.
 
-## Flujo de la Aplicación
+#### 3. Configurar el Segundo Proyecto (proyectoStorage) en `MyApp.java`
 
-1. **Inicio de Sesión o Registro**: 
-   - Los usuarios pueden iniciar sesión con su correo y contraseña o registrarse. Si el usuario elige registrarse, el sistema solicita su nombre, rol (Empresa o Trabajador) y una imagen de perfil.
+Para conectar el segundo proyecto de Firebase (proyectoStorage) exclusivamente para almacenamiento, necesitamos inicializarlo manualmente en una clase de aplicación personalizada. 
 
-2. **Perfil de Empresa**: 
-   - Las empresas pueden gestionar sus empleos, agregando, editando o eliminando publicaciones desde su perfil.
-  
-3. **Búsqueda de Empleo para Trabajador** *(en desarrollo)*:
-   - Los trabajadores podrán ver las ofertas disponibles y postularse, funcionalidad actualmente en desarrollo.
+1. En la carpeta `app/src/main/java/com/example/loginperfilimg/`, crea una clase llamada `MyApp.java`:
 
----
+   ```java
+   package com.example.loginperfilimg;
 
-## Estructura del Proyecto
+   import android.app.Application;
+   import com.google.firebase.FirebaseApp;
+   import com.google.firebase.FirebaseOptions;
 
-```
-📦 ProyectoAndroid
- ┣ 📂java
- ┃ ┗ 📂com.example.loginperfilimg
- ┃   ┣ 📜LoginActivity.java              # Autenticación de usuario
- ┃   ┣ 📜ProfileActivity.java            # Perfil de Empresa y gestión de empleos
- ┃   ┣ 📜JobAdapter.java                 # Adaptador para lista de empleos
- ┃   ┗ 📜User.java                       # Modelo de usuario
- ┣ 📂res
- ┃ ┣ 📂layout
- ┃ ┃ ┣ 📜activity_login.xml              # Diseño de pantalla de inicio de sesión
- ┃ ┃ ┣ 📜activity_profile.xml            # Diseño de perfil para Empresa
- ┃ ┃ ┗ 📜item_job.xml                    # Elemento individual de empleo en lista
- ┗ 📜README.md                           # Documentación del proyecto
-```
+   public class MyApp extends Application {
 
----
+       @Override
+       public void onCreate() {
+           super.onCreate();
 
-## Explicación del Código y Resultados Esperados
+           // Inicializar el proyecto principal (proyectoA) automáticamente
+           FirebaseApp.initializeApp(this);
 
-### 1. LoginActivity.java - Registro y Login
+           // Configurar y registrar el segundo proyecto (proyectoStorage) manualmente
+            FirebaseOptions options = new FirebaseOptions.Builder()
+             .setProjectId("your_project_id")  // Reemplaza "your_project_id" con el project_id específico de proyectoStorage
+             .setApplicationId("your_application_id") // Reemplaza "your_application_id" con el mobilesdk_app_id de proyectoStorage
+             .setApiKey("your_api_key") // Reemplaza "your_api_key" con el current_key de proyectoStorage
+             .setStorageBucket("your_storage_bucket.appspot.com") // Reemplaza "your_storage_bucket.appspot.com" con el storage_bucket de proyectoStorage
+             .build();
+           FirebaseApp.initializeApp(this, options, "proyectoStorage");
+       }
+   }
+2. Asegúrate de reemplazar los valores (project_id, application_id, api_key y storage_bucket) con los datos específicos de proyectoStorage que obtuviste del archivo google-services.json.
 
-**Objetivo**: Proporcionar acceso seguro a la aplicación mediante autenticación de usuario.
+3. Modificar `AndroidManifest.xml`
 
-**Código Principal**:
+Para que la aplicación inicialice ambos proyectos al arrancar, agrega la clase `MyApp` en el archivo `AndroidManifest.xml`:
 
-```java
-mAuth.signInWithEmailAndPassword(email, password)
-    .addOnCompleteListener(this, task -> {
-        if (task.isSuccessful()) {
-            // Iniciar sesión y redirigir al perfil
-        } else {
-            // Mostrar error en caso de fallo
-        }
-    });
-```
+1. Abre `AndroidManifest.xml`, ubicado en `app/src/main/`.
+2. Agrega la clase `MyApp` como la clase de aplicación principal en el elemento `<application>`:
 
-**Resultados Esperados**:
-   - Los datos de usuario se autentican contra Firebase Authentication.
-   - Al registrar un nuevo usuario, se guarda en `users` con imagen almacenada en `Firebase Storage`.
-  
-**Imagen 1**: *Captura de pantalla del inicio de sesión en la app.*
+   ```xml
+   <application
+       android:name=".MyApp"
+       android:allowBackup="true"
+       android:icon="@mipmap/ic_launcher"
+       android:label="@string/app_name"
+       android:roundIcon="@mipmap/ic_launcher_round"
+       android:supportsRtl="true"
+       android:theme="@style/AppTheme">
+       <!-- Otras configuraciones, actividades, servicios, etc. -->
+   </application>
+3. Configurar `RegisterActivity.java` y `FirebaseUtils.java`
 
----
+Para que la aplicación utilice **proyectoStorage** exclusivamente para almacenamiento, es necesario ajustar el código en `RegisterActivity.java` y `FirebaseUtils.java`.
 
-### 2. ProfileActivity.java - Gestión de Empleos para Empresa
+##### `RegisterActivity.java`
 
-**Objetivo**: Permitir a las empresas administrar sus empleos, publicándolos y actualizándolos en tiempo real.
+En `RegisterActivity`, cambia la referencia de `FirebaseStorage` para que use el segundo proyecto:
 
-**Código Principal**:
+1. En el método `onCreate`, inicializa `FirebaseStorage` con `proyectoStorage`:
 
-```java
-DatabaseReference jobsRef = FirebaseDatabase.getInstance().getReference("jobs");
-jobsRef.child(jobId).setValue(newJob)
-    .addOnCompleteListener(task -> {
-        if (task.isSuccessful()) {
-            // Confirmación de creación del empleo
-        }
-    });
-```
+   ```java
+   import com.google.firebase.FirebaseApp;
+   import com.google.firebase.storage.FirebaseStorage;
+   import com.google.firebase.storage.StorageReference;
 
-**Resultados Esperados**:
-   - Cada empleo se almacena en `jobs`, relacionado a la empresa mediante el `companyEmail`.
+   // Dentro del método onCreate en RegisterActivity.java
+   FirebaseApp storageApp = FirebaseApp.getInstance("proyectoStorage");
+   StorageReference storageReference = FirebaseStorage.getInstance(storageApp).getReference("profile_images");// Aqui debes cambiar el nombre por el grupo
 
-**Imagen 2**: *Vista del perfil de Empresa, con botón para añadir empleos.*
+ Nota: Asegúrate de reemplazar "profile_images" con el nombre del directorio de almacenamiento que desees.   
 
----
+ ##### `FirebaseUtils.java`
 
-### 3. User.java - Modelo de Usuario
+En `FirebaseUtils.java`, ajusta el método `getProfileImagesStorageReference()` para que utilice **proyectoStorage**:
 
-**Objetivo**: Definir el modelo de datos del usuario, incluyendo nombre, email, rol y URL de imagen.
+2. Cambia la referencia de `FirebaseStorage` para especificar el segundo proyecto:
 
-**Código Principal**:
+   ```java
+   public static StorageReference getProfileImagesStorageReference() {
+       FirebaseApp storageApp = FirebaseApp.getInstance("proyectoStorage");
+       return FirebaseStorage.getInstance(storageApp).getReference("profile_images");
+   }
+Este cambio asegura que todas las referencias a getProfileImagesStorageReference() utilicen proyectoStorage.
 
-```java
-public class User {
-    private String name;
-    private String email;
-    private String role;
-    private String imageUrl;
+## Conclusión
 
-    public User(String name, String email, String role, String imageUrl) {
-        this.name = name;
-        this.email = email;
-        this.role = role;
-        this.imageUrl = imageUrl;
-    }
-    // Getters y setters omitidos para brevedad
-}
-```
+Con estos pasos, tu aplicación Android ahora está configurada para usar dos proyectos de Firebase de manera independiente:
 
-**Resultado Esperado**: Cada usuario se almacena en `users`, con su imagen guardada en `Firebase Storage`.
+1. **Proyecto Principal** (**proyectoA**): Se utiliza para manejar la autenticación y la base de datos en Firebase.
+2. **Proyecto de Almacenamiento** (**proyectoStorage**): Exclusivamente para almacenamiento de archivos en Firebase Storage.
 
-**Imagen 3**: *Estructura en Firebase Realtime Database mostrando usuarios y empleos.*
+Gracias a esta configuración, puedes mantener una separación clara entre las funciones de autenticación, base de datos y almacenamiento. Esto es particularmente útil para proyectos que requieren modularidad o que deben cumplir con diferentes necesidades de almacenamiento y autenticación.
 
----
+## Proyecto TestSwipe: Implementación de Deslizar para Aceptar/Rechazar Colores
 
-## Estructura de Firebase
+El proyecto **TestSwipe** permite a los usuarios deslizar a la izquierda o a la derecha para aceptar o rechazar colores. Esta funcionalidad utiliza un `GestureDetector` para detectar los gestos de swipe y mostrar los colores aceptados o rechazados con una animación.
 
-**Usuarios (`users`)**: Cada usuario contiene la siguiente información:
+### Estructura del Proyecto
 
-```plaintext
-users
- └── userId
-     ├── name: "Empresa A"
-     ├── email: "empresa@example.com"
-     ├── role: "Empresa"
-     └── imageUrl: "https://firebasestorage.googleapis.com/...
-```
+1. **Interfaz de Usuario (activity_main.xml)**: Contiene un `ImageView` que muestra el color actual y un `TextView` para mostrar los resultados finales.
+   
+   ```xml
+   <?xml version="1.0" encoding="utf-8"?>
+   <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:padding="16dp">
 
-**Empleos (`jobs`)**: Cada empleo contiene los detalles específicos de la empresa y la oferta de trabajo.
+       <ImageView
+           android:id="@+id/imageView"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:contentDescription="Color deslizable"
+           android:scaleType="centerCrop" />
 
-```plaintext
-jobs
- └── jobId
-     ├── title: "Desarrollador Android"
-     ├── description: "Experiencia en desarrollo móvil..."
-     ├── expiryDate: "2024-12-31"
-     ├── mode: "Full-time"
-     ├── salary: "1000"
-     ├── vacancies: "3"
-     ├── companyEmail: "empresa@example.com"
-     └── status: "Publicado"
-```
+       <TextView
+           android:id="@+id/messageTextView"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_centerInParent="true"
+           android:textSize="18sp"
+           android:textColor="#000000"
+           android:text=""/>
+   </RelativeLayout>
+   
+2. Lógica de Swipe (MainActivity.java): La actividad principal gestiona los gestos de swipe y cambia el color en respuesta a estos gestos. Los colores aceptados se almacenan en una lista y se muestran al final.
 
----
+   1. Gestión de Gestos y Animaciones (MainActivity.java): La actividad principal contiene un GestureDetector para capturar los gestos y 
+      animaciones para los movimientos de swipe.
+      1. Inicialización de Colores y Detectores de Gestos:
+         ```java
+            gestureDetector = new GestureDetector(this, new SwipeGestureListener());
+            imageView = findViewById(R.id.imageView);
+            messageTextView = findViewById(R.id.messageTextView);
+            
+            // Configura el primer color de fondo
+            imageView.setBackgroundColor(colors[currentIndex]);
+            imageView.setOnTouchListener((v, event) -> {
+                gestureDetector.onTouchEvent(event);
+                return true;
+            });
+         
+      2. Método para Aceptar Color: Aplica una animación de salida a la izquierda al aceptar el color actual y luego muestra el siguiente.
+         ```java
+         private void acceptColor() {
+          ObjectAnimator animatorOut = ObjectAnimator.ofFloat(imageView, "translationX", -imageView.getWidth());
+          animatorOut.setDuration(300);
+          animatorOut.addListener(new android.animation.AnimatorListenerAdapter() {
+              @Override
+              public void onAnimationEnd(android.animation.Animator animation) {
+                  acceptedColors.add(colors[currentIndex]);
+                  moveToNextColor();
+                  imageView.setTranslationX(imageView.getWidth());
+                  ObjectAnimator animatorIn = ObjectAnimator.ofFloat(imageView, "translationX", 0);
+                  animatorIn.setDuration(300);
+                  animatorIn.start();
+              }
+          });
+          animatorOut.start();
+         }
+      3.Mostrar Resultados Finales: Al llegar al último color, muestra los colores aceptados en el `TextView`.
+         ```java
+         private void showResults() {
+          imageView.setVisibility(ImageView.GONE);
+          StringBuilder result = new StringBuilder("No hay más ofertas.\nColores aceptados:\n");
+          for (int color : acceptedColors) {
+              result.append(String.format("#%06X", (0xFFFFFF & color))).append("\n");
+          }
+          messageTextView.setText(result.toString());
+      }
+## Explicación del Código
 
-## Flujo General de la Aplicación
+Gestión de Gestos: La clase `SwipeGestureListener` detecta la dirección del swipe. Si el usuario desliza a la derecha, se rechaza el color; si desliza a la izquierda, se acepta.
+Animaciones de Deslizar: Los métodos `acceptColor()` y `rejectColor()` aplican animaciones de deslizamiento para indicar la acción de aceptación o rechazo del color actual.
+Mostrar Resultados: Al llegar al último color, `showResults()` oculta el `ImageView` y muestra los colores aceptados en el `TextView`.
+Con esta estructura, el proyecto TestSwipe permite gestionar gestos de swipe de manera intuitiva y visual.
 
-1. **Registro/Login**: 
-   - Los usuarios se autentican o registran y suben su imagen de perfil.
 
-2. **Perfil de Empresa**: 
-   - Las empresas ven y gestionan sus empleos, que aparecen en `ProfileActivity` tras ser creados.
-
-3. **Búsqueda para Trabajadores** *(en proceso)*: 
-   - Los trabajadores verán empleos y podrán postularse, esta sección está en desarrollo.
