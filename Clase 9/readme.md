@@ -213,9 +213,10 @@ El proyecto **TestSwipe** permite a los usuarios deslizar a la izquierda o a la 
       }
 ## Explicación del Código
 
-Gestión de Gestos: La clase `SwipeGestureListener` detecta la dirección del swipe. Si el usuario desliza a la derecha, se rechaza el color; si desliza a la izquierda, se acepta.
-Animaciones de Deslizar: Los métodos `acceptColor()` y `rejectColor()` aplican animaciones de deslizamiento para indicar la acción de aceptación o rechazo del color actual.
-Mostrar Resultados: Al llegar al último color, `showResults()` oculta el `ImageView` y muestra los colores aceptados en el `TextView`.
+1. Gestión de Gestos: La clase `SwipeGestureListener` detecta la dirección del swipe.
+2. Si el usuario desliza a la derecha, se rechaza el color; si desliza a la izquierda, se acepta.
+3. Animaciones de Deslizar: Los métodos `acceptColor()` y `rejectColor()` aplican animaciones de deslizamiento para indicar la acción de aceptación o rechazo del color actual.
+4. Mostrar Resultados: Al llegar al último color, `showResults()` oculta el `ImageView` y muestra los colores aceptados en el `TextView`.
 Con esta estructura, el proyecto TestSwipe permite gestionar gestos de swipe de manera intuitiva y visual.
 
 
