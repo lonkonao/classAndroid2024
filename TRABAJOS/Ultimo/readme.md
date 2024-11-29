@@ -33,7 +33,7 @@ Desarrollar una aplicación de chat en Android utilizando Java, Material Design 
 
 ## Rúbrica de Evaluación (100 puntos)
 
-| **Criterio**                          | **Logrado (10 puntos)**                     | **Medianamente (5 puntos)**                    | **No logrado (0 puntos)**                       |
+| **Criterio**                          | **Logrado (20 puntos)**                     | **Medianamente (10 puntos)**                    | **No logrado (0 puntos)**                       |
 |---------------------------------------|---------------------------------------------|-----------------------------------------------|------------------------------------------------|
 | **Registro de Usuarios**              | Registro funcional con nickname y validación completa. | Registro funciona, pero hay errores menores (nickname no se guarda, validaciones incompletas). | Registro no funciona o está incompleto.       |
 | **Diseño en Material Design**         | Diseño moderno y adecuado para todas las vistas. | Diseño aceptable, pero no cumple completamente con los principios de Material Design. | Diseño no adecuado o incompleto.              |
